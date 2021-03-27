@@ -1,0 +1,6 @@
+# Folders
+my-cuda-prj
+my-cuda-sln
+
+# Premake executable used for testing
+premake5.exe
