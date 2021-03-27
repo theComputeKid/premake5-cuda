@@ -4,7 +4,7 @@
 
 Extends Premake5 by enabling the use of CUDA in native MSVC project files.
 
-Enabled macros (listed in cuda/cuda-exported-variables.lua):
+Enabled macros (listed in premake5-cuda/cuda-exported-variables.lua):
 - cudaFiles (Table) -> list of files to be compiled by NVCC
 - cudaRelocatableCode (Bool) -> triggers -rdc=true
 - cudaExtensibleWholeProgram (Bool) -> triggers extensible whole program compilation
