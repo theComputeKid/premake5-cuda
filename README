@@ -28,4 +28,5 @@ Note:
 - Requires installing CUDA toolkit integration for Visual Studio
 - Be careful not to tell Visual Studio to compile the same file with both its compiler AND NVCC - pick one!
 - Written by a C++ developer with no experience in LUA
+- Tokens (e.g. %{wks.location}) can not yet be consumed by these settings
 - MIT license: Enjoy!
