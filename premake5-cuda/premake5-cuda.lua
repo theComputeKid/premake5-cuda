@@ -34,6 +34,7 @@ local function addCompileProps(cfg)
     end
 
     -- Set XML tags to their requested values 
+    premake.w('<CodeGeneration></CodeGeneration>')
     writeBoolean('GenerateRelocatableDeviceCode', cfg.cudaRelocatableCode)
     writeBoolean('ExtensibleWholeProgramCompilation', cfg.cudaExtensibleWholeProgram)
     writeBoolean('FastMath', cfg.cudaFastMath)
