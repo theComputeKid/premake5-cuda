@@ -4,3 +4,4 @@ my-cuda-sln
 
 # Premake executable used for testing
 premake5.exe
+premake5

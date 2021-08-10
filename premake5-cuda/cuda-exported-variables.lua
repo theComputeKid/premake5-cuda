@@ -1,5 +1,4 @@
 -- Variables exported to the user, descriptions in the README
-require("vstudio")
 
 premake.api.register {
     name = "cudaRelocatableCode",
@@ -47,4 +46,10 @@ premake.api.register {
     name = "cudaFiles",
     scope = "config",
     kind = "table"
+}
+
+premake.api.register {
+    name = "cudaPath",
+    scope = "config",
+    kind = "string"
 }

@@ -32,8 +32,9 @@ files "example/*.cpp" -- files compiled by host compiler (e.g. CL.exe)
 
 -- Add necessary build customization using standard Premake5
 -- This assumes you have installed Visual Studio integration for CUDA
--- Here we have it set to 11.2 (tested on Update 2)
-buildcustomizations "BuildCustomizations/CUDA 11.2"
+-- Here we have it set to 11.4 (tested on Update 4)
+buildcustomizations "BuildCustomizations/CUDA 11.4"
+cudaPath "/usr/local/cuda" -- Only affects linux, because the windows builds get CUDA from the VS extension
 
 -- CUDA specific properties
 cudaFiles {"example/*.cu"} -- files NVCC compiles
@@ -43,7 +44,12 @@ cudaMaxRegCount "32"
 cudaCompilerOptions {"-arch=sm_52", "-gencode=arch=compute_52,code=sm_52", "-gencode=arch=compute_60,code=sm_60",
                      "-gencode=arch=compute_61,code=sm_61", "-gencode=arch=compute_70,code=sm_70",
                      "-gencode=arch=compute_75,code=sm_75", "-gencode=arch=compute_80,code=sm_80",
-                     "-gencode=arch=compute_86,code=sm_86", "-gencode=arch=compute_86,code=compute_86", "-t0"} 
+                     "-gencode=arch=compute_86,code=sm_86", "-gencode=arch=compute_86,code=compute_86", "-t0"}                      
+
+-- On Windows, the link to cudart is done by the CUDA extension, but on Linux, this must be done manually
+if os.target() == "linux" then 
+    linkoptions {"-L/usr/local/cuda/lib64 -lcudart"}
+end
 
 filter "configurations:release"
 cudaFastMath "On" -- enable fast math for release
