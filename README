@@ -13,6 +13,7 @@ Enabled macros (listed in premake5-cuda/cuda-exported-variables.lua):
 - cudaFastMath (Bool) -> triggers fast math optimizations
 - cudaVerbosePTXAS (Bool) -> triggers code gen verbosity
 - cudaMaxRegCount (String) -> number to determine the max used registers
+- cudaPath (string) -> Path to CUDA root directory on Linux
 
 To use: 
 - Copy the premake5-cuda folder to your project
