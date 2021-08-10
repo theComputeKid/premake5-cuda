@@ -32,7 +32,7 @@ files "example/*.cpp" -- files compiled by host compiler (e.g. CL.exe)
 
 -- Add necessary build customization using standard Premake5
 -- This assumes you have installed Visual Studio integration for CUDA
--- Here we have it set to 11.4 (tested on Update 4)
+-- Here we have it set to 11.4
 buildcustomizations "BuildCustomizations/CUDA 11.4"
 cudaPath "/usr/local/cuda" -- Only affects linux, because the windows builds get CUDA from the VS extension
 

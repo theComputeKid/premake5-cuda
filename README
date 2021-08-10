@@ -2,7 +2,7 @@
 >> theComputeKid -> Premake5 module for CUDA
 --------------------------------------------
 
-Extends Premake5 by enabling the use of CUDA in native MSVC project files.
+Extends Premake5 by enabling the use of CUDA in native MSVC or GNU make projects
 
 Enabled macros (listed in premake5-cuda/cuda-exported-variables.lua):
 - cudaFiles (Table) -> list of files to be compiled by NVCC
@@ -18,15 +18,15 @@ To use:
 - Copy the premake5-cuda folder to your project
 - Include it in your premake5.lua file
 
-An example of the usage of these macros is given in a sample premake5.lua (for CUDA 11.2.2) at the root of this project.
+An example of the usage of these macros is given in a sample premake5.lua (for CUDA 11.4) at the root of this project.
 
 Tested with:
-- Visual Studio 2019 (toolkit v142) with CUDA toolkit integrated
-- CUDA 11.2.2
+- Visual Studio 2019 (toolkit v142) with CUDA toolkit 11.4 integrated
+- GNU make on Linux with CUDA toolkit 11.4
 
 Note:
 - Requires installing CUDA toolkit integration for Visual Studio
 - Be careful not to tell Visual Studio to compile the same file with both its compiler AND NVCC - pick one!
 - Written by a C++ developer with no experience in LUA
-- Tokens (e.g. %{wks.location}) can not yet be consumed by these settings
+- Tokens (e.g. %{wks.location}) can not yet be consumed by these settings but globs can be taken by cudaFiles
 - MIT license: Enjoy!
