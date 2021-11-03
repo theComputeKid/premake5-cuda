@@ -1,5 +1,5 @@
 --------------------------------------------
->> theComputeKid -> Premake5 module for CUDA
+>> Premake5 module for CUDA
 --------------------------------------------
 
 Extends Premake5 by enabling the use of CUDA in native MSVC or GNU make projects
