@@ -1,13 +1,13 @@
 require("gmake2")
 require("cuda-exported-variables")
 
-local function writeBoolean(macro, flag)
+local function writeBoolean(property, flag)
     if value == true or value == "On" then
         premake.w(property .. ' += ' .. flag)
     end
 end
 
-local function writeBooleanWithFlag(macro, flag, value)
+local function writeBooleanWithFlag(property, flag, value)
     if value == true or value == "On" then
         premake.w(property .. ' += ' .. flag .. '=true')
     elseif value == false or value == "Off" then
@@ -56,7 +56,7 @@ local function addCUDAFiles(cfg)
         table.foreachi(cfg.cudaFiles, checkForGlob)
 
         premake.w(deviceLinkObj .. ': $(CUOBJECTS)')
-        premake.w('\t$(SILENT) $(NVCC) -dlink $^ $(NVCCLINKFLAGS) -o $@')  
+        premake.w('\t$(SILENT) $(NVCC) -dlink $^ $(NVCCLINKFLAGS) -o $@')
         premake.w()
 
         premake.w('LINKCMD += $(CUOBJECTS)')
@@ -82,7 +82,7 @@ local function addCompilerProps(cfg)
     writeBooleanWithFlag('NVCCCOMPILEFLAGS', '-rdc', cfg.cudaRelocatableCode)
     writeBoolean('NVCCCOMPILEFLAGS', '-ewp', cfg.cudaExtensibleWholeProgram)
     writeBoolean('NVCCCOMPILEFLAGS', '--use_fast_math', cfg.cudaFastMath)
-    
+
     if cfg.cudaMaxRegCount ~= nil and cfg.cudaMaxRegCount ~= '' then
         premake.w('NVCCCOMPILEFLAGS += -maxrregcount ' .. cfg.cudaMaxRegCount)
     end
