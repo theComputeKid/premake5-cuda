@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "windows-debug",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/test/out/ExampleProjectExe/bin/debug/ExampleProjectExe.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "make"
+    },
+    {
+      "name": "windows-release",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/test/out/ExampleProjectExe/bin/release/ExampleProjectExe.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "make"
+    }
+  ]
+}

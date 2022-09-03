@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "ms-vscode.cpptools",
+    "cschlosser.doxdocgen",
+    "gruntfuggly.todo-tree",
+    "eamodio.gitlens"
+  ]
+}
