@@ -37,7 +37,7 @@ workspace "ExampleProject"
 
   includedirs { "include" }
 
---* test excetuable project
+--* test executable project
 project "ExampleProjectExe"
 
   kind "ConsoleApp"

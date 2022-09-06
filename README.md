@@ -17,7 +17,7 @@ Compiles CUDA code using the Visual Studio CUDA Toolkit extension. Enabled macro
 
 Files specified by the premake5 options `files`  are compiled by the MSVC and not nvcc.
 
-An example is provided in the test folder where a CUDA executable project containing C++, PTX and CUDA files is linked against a CUDA shared library project.
+An example is provided in the test folder where a CUDA executable project containing C++, PTX and CUDA files is linked against a CUDA shared library project. If you clone this repo recursively, it will also pull the premake5 repo, which can be used via the makefile to build premake and then the tests (e.g. via the `nmake` command), in case you do not have premake5 aleady on your system.
 
 To use:
 - Copy the premake5-cuda folder to your project
