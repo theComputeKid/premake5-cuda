@@ -8,6 +8,8 @@ workspace "ExampleProject"
 
   location "out"
 
+  targetdir("out/bin/%{cfg.buildcfg}")
+
   configurations {
     "debug",
     "release"
@@ -77,5 +79,11 @@ project "ExampleProjectDLL"
   cudaRelocatableCode "On"
 
   defines { "PREMAKE_CUDA_EXPORT_API" }
-  cudaCompilerOptions { "-std=c++17" }
+
+  -- Let's compile for all supported architectures (and also in parallel with -t0)
+  cudaCompilerOptions {"-arch=sm_52", "-gencode=arch=compute_52,code=sm_52", "-gencode=arch=compute_60,code=sm_60",
+    "-gencode=arch=compute_61,code=sm_61", "-gencode=arch=compute_70,code=sm_70",
+    "-gencode=arch=compute_75,code=sm_75", "-gencode=arch=compute_80,code=sm_80",
+    "-gencode=arch=compute_86,code=sm_86", "-gencode=arch=compute_86,code=compute_86", "-t0"} 
+
   cudaLinkerOptions { "-g" }

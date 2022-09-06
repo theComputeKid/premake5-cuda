@@ -4,9 +4,9 @@ PREMAKE_OUT = vendor\premake-core\bin\release\premake5.exe
 #* Runs the tests.
 all: build
 	@echo Testing debug config
-	@cd test\out\ExampleProjectExe\bin\debug && .\ExampleProjectExe.exe
+	@cd test\out\bin\debug && .\ExampleProjectExe.exe
 	@echo Testing release config
-	@cd test\out\ExampleProjectExe\bin\release && .\ExampleProjectExe.exe
+	@cd test\out\bin\release && .\ExampleProjectExe.exe
 
 build: premake
 	@cd test\out && msbuild -p:Configuration=debug -m -v:Normal
