@@ -24,3 +24,5 @@ To use:
 - Include it in your premake5.lua file as shown in the example.
 
 Tested with Visual Studio 2022 (toolkit v143) with CUDA toolkit 12.0 VS integration.
+
+Note: If PTX is requested, it will currently be found in the output object folder, with the .obj extension. Though, it can be opened with a text editor for inspection.
