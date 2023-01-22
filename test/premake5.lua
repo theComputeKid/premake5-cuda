@@ -48,7 +48,7 @@ project "ExampleProjectExe"
 
   files { "exe/cpp/**.cpp" }
 
-  buildcustomizations "BuildCustomizations/CUDA 11.7"
+  buildcustomizations "BuildCustomizations/CUDA 12.0"
 
   externalwarnings "Off" -- thrust gives a lot of warnings
   cudaFiles { "exe/cu/**.cu" } -- files to be compiled into binaries
@@ -72,18 +72,20 @@ project "ExampleProjectDLL"
 
   location "out/%{prj.name}"
 
-  buildcustomizations "BuildCustomizations/CUDA 11.7"
+  buildcustomizations "BuildCustomizations/CUDA 12.0"
 
   cudaFiles { "lib/**.cu" }
-  cudaFastMath "On"
   cudaRelocatableCode "On"
 
   defines { "PREMAKE_CUDA_EXPORT_API" }
 
   -- Let's compile for all supported architectures (and also in parallel with -t0)
-  cudaCompilerOptions {"-arch=sm_52", "-gencode=arch=compute_52,code=sm_52", "-gencode=arch=compute_60,code=sm_60",
-    "-gencode=arch=compute_61,code=sm_61", "-gencode=arch=compute_70,code=sm_70",
-    "-gencode=arch=compute_75,code=sm_75", "-gencode=arch=compute_80,code=sm_80",
-    "-gencode=arch=compute_86,code=sm_86", "-gencode=arch=compute_86,code=compute_86", "-t0"} 
+  cudaCompilerOptions {"-arch=all", "-t0"} 
 
-  cudaLinkerOptions { "-g" }
+  filter "configurations:debug"
+    cudaLinkerOptions { "-g" }
+  filter {}
+
+  filter "configurations:release"
+    cudaFastMath "On"
+  filter {}

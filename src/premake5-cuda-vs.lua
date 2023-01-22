@@ -90,8 +90,8 @@ local function cudaProjectProps(prj)
   --* All CUDA files will be inside this scope.
   premake.w('<ItemGroup>')
 
-  table.foreachi(prj.cudaFiles, checkForGlob)
-  table.foreachi(prj.cudaPTXFiles, checkForGlobPTX)
+  table.foreachi(prj.project.cudaFiles, checkForGlob)
+  table.foreachi(prj.project.cudaPTXFiles, checkForGlobPTX)
 
   premake.w('</ItemGroup>')
 end
@@ -102,7 +102,7 @@ premake.override(premake.vstudio.vc2010.elements, "project", function(base, prj)
   local calls = base(prj)
 
   --* Only enabled if cudaProject defined.
-  if (prj.current.cudaFiles ~= nil) then
+  if (prj.project.cudaFiles ~= nil) then
     table.insertafter(calls, premake.vstudio.vc2010.files, cudaProjectProps)
   end
 
