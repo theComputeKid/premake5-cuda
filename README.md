@@ -4,8 +4,8 @@
 </div>
 
 Compiles CUDA code using the Visual Studio CUDA Toolkit extension. Enabled macros (listed in `src/cuda-exported-variables.lua`):
-- `cudaFiles` (Table) -> list of files to be compiled by NVCC to binary (absolute path from solution root)
-- `cudaPTXFiles` (Table) -> list of files to be compiled by NVCC to PTX (absolute path from solution root)
+- `cudaFiles` (Table) -> list of files to be compiled by NVCC to binary (relative path from solution root)
+- `cudaPTXFiles` (Table) -> list of files to be compiled by NVCC to PTX (relative path from solution root)
 - `cudaRelocatableCode` (Bool) -> triggers -rdc=true
 - `cudaExtensibleWholeProgram` (Bool) -> triggers extensible whole program compilation
 - `cudaCompilerOptions` (Table) -> passed to nvcc
@@ -23,7 +23,4 @@ To use:
 - Copy the premake5-cuda folder to your project
 - Include it in your premake5.lua file as shown in the example.
 
-Tested with Visual Studio 2022 (toolkit v143) with CUDA toolkit 11.7 VS integration.
-
-Limitations:
-- Available options are currently unable to deal with filters.
+Tested with Visual Studio 2022 (toolkit v143) with CUDA toolkit 12.0 VS integration.
