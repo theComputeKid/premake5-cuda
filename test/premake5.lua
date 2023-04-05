@@ -48,7 +48,7 @@ project "ExampleProjectExe"
 
   files { "exe/cpp/**.cpp" }
 
-  buildcustomizations "BuildCustomizations/CUDA 12.0"
+  buildcustomizations "BuildCustomizations/CUDA 12.1"
 
   externalwarnings "Off" -- thrust gives a lot of warnings
   cudaFiles { "exe/cu/**.cu" } -- files to be compiled into binaries
@@ -72,7 +72,7 @@ project "ExampleProjectDLL"
 
   location "out/%{prj.name}"
 
-  buildcustomizations "BuildCustomizations/CUDA 12.0"
+  buildcustomizations "BuildCustomizations/CUDA 12.1"
 
   cudaFiles { "lib/**.cu" }
   cudaRelocatableCode "On"

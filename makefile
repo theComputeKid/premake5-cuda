@@ -13,7 +13,11 @@ build: premake
 	@cd test\out && msbuild -p:Configuration=release -m -v:Normal
 
 premake: $(PREMAKE_OUT)
-	@cd test && ..\$(PREMAKE_OUT) vs2022
+	@$(PREMAKE_OUT) --file=test\premake5.lua vs2022
 
 $(PREMAKE_OUT):
 	@cd vendor\premake-core && $(MAKE) -nologo -f Bootstrap.mak windows PLATFORM=x64
+
+clean:
+	@del /s /q $(PREMAKE_OUT)
+	@rmdir /s /q test\out
