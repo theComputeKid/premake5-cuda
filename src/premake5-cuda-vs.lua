@@ -48,7 +48,11 @@ local function addCompilerProps(cfg)
   writeBoolean('PtxAsOptionV', cfg.cudaVerbosePTXAS)
   writeTableAsOneString('AdditionalOptions', cfg.cudaCompilerOptions)
   writeString('MaxRegCount', cfg.cudaMaxRegCount)
+  writeString('CudaToolkitCustomDir', cfg.cudaPath)
+  writeBoolean('GenerateLineInfo', cfg.cudaGenLineInfo)
 
+  -- Code Generation is useless, when you can provide it directly in the compile flags
+  premake.w('  <CodeGeneration></CodeGeneration>')
   premake.w('</CudaCompile>')
 end
 

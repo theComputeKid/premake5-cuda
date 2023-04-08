@@ -14,6 +14,8 @@ Compiles CUDA code using the Visual Studio CUDA Toolkit extension. Enabled macro
 - `cudaVerbosePTXAS` (Bool) -> triggers code gen verbosity
 - `cudaMaxRegCount` (String) -> number to determine the max used registers
 - `cudaKeep` (Bool) -> keeps preprocessed output
+- `cudaPath` (String) -> custom CUDA install path to override the VS integration plugin
+- `cudaGenLineInfo` (Bool) -> generates line info
 
 Files specified by the premake5 options `files`  are compiled by the MSVC and not nvcc.
 
@@ -24,6 +26,6 @@ To use:
 - Copy the premake5-cuda folder to your project
 - Include it in your premake5.lua file as shown in the example.
 
-Tested with Visual Studio 2022 (toolkit v143) with CUDA toolkit 12.0 VS integration.
+Tested with Visual Studio 2022 (toolkit v143) with CUDA toolkit 12.1 VS integration.
 
 Note: If PTX is requested, it will be found in the output object folder, with the .obj extension, though, it can be opened with a text editor for inspection.

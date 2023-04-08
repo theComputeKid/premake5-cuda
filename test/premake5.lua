@@ -84,8 +84,10 @@ project "ExampleProjectDLL"
 
   filter "configurations:debug"
     cudaLinkerOptions { "-g" }
+    cudaPath "$(CUDA_PATH)"
   filter {}
 
   filter "configurations:release"
     cudaFastMath "On"
+    cudaGenLineInfo "On"
   filter {}

@@ -59,3 +59,15 @@ premake.api.register {
     scope = "config",
     kind = "boolean"
 }
+
+premake.api.register {
+    name = "cudaPath",
+    scope = "config",
+    kind = "string"
+}
+
+premake.api.register {
+    name = "cudaGenLineInfo",
+    scope = "config",
+    kind = "boolean"
+}
