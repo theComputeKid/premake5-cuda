@@ -62,7 +62,7 @@ premake.api.register {
 
 premake.api.register {
     name = "cudaPath",
-    scope = "config",
+    scope = "project",
     kind = "string"
 }
 

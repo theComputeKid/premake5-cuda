@@ -74,6 +74,9 @@ project "ExampleProjectDLL"
 
   buildcustomizations "BuildCustomizations/CUDA 12.1"
 
+  -- Just in case we want the VS CUDA extension to use a custom version of CUDA
+  cudaPath "$(CUDA_PATH)"
+
   cudaFiles { "lib/**.cu" }
   cudaRelocatableCode "On"
 
@@ -84,7 +87,6 @@ project "ExampleProjectDLL"
 
   filter "configurations:debug"
     cudaLinkerOptions { "-g" }
-    cudaPath "$(CUDA_PATH)"
   filter {}
 
   filter "configurations:release"

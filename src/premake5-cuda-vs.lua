@@ -28,6 +28,19 @@ local function addLinkerProps(cfg)
   end
 end
 
+local function writeGlobalString(property, value)
+  if value ~= nil and value ~= '' then
+      premake.w('<' .. property .. '>' .. value .. '</' .. property .. '>')
+  end
+end
+
+local function addGlobals(prj)
+
+  -- Set XML tags to their requested values
+  writeGlobalString('CudaToolkitCustomDir', prj.cudaPath)
+
+end
+
 local function addCompilerProps(cfg)
   premake.w('<CudaCompile>')
 
@@ -132,4 +145,11 @@ premake.override(premake.vstudio.vc2010.elements, "itemDefinitionGroup", functio
   table.insert(items, addCompilerProps)
   table.insert(items, addLinkerProps)
   return items
+end)
+
+--* Add globals
+premake.override(premake.vstudio.vc2010.elements, "globals", function(base, prj)
+  local calls = base(prj)
+  table.insertafter(calls, prj.projectGuid, addGlobals)
+  return calls
 end)
