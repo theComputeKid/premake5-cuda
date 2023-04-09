@@ -154,14 +154,19 @@ end)
 --* Add compiler and linker options.
 premake.override(premake.vstudio.vc2010.elements, "itemDefinitionGroup", function(oldfn, cfg)
   local items = oldfn(cfg)
-  table.insert(items, addCompilerProps)
-  table.insert(items, addLinkerProps)
+  --* Only enabled if cudaProject defined.
+  if (cfg.project.cudaFiles ~= nil) then
+    table.insert(items, addCompilerProps)
+    table.insert(items, addLinkerProps)
+  end
   return items
 end)
 
 --* Add globals
 premake.override(premake.vstudio.vc2010.elements, "globals", function(base, prj)
   local calls = base(prj)
-  table.insertafter(calls, prj.projectGuid, addGlobals)
+  if (prj.project.cudaFiles ~= nil) then
+    table.insertafter(calls, prj.projectGuid, addGlobals)
+  end
   return calls
 end)

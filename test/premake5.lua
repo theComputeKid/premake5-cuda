@@ -93,3 +93,12 @@ project "ExampleProjectDLL"
     cudaFastMath "On"
     cudaGenLineInfo "On"
   filter {}
+
+--* test executable project (non-CUDA)
+project "ExampleProjectExeNonCUDA"
+
+kind "ConsoleApp"
+
+location "out/%{prj.name}"
+
+files { "nonCuda/**.cpp" }
