@@ -108,7 +108,19 @@ end
 
 --* Check the glob and match all files.
 local function checkForGlobPTX(value)
-  matchingFiles = os.matchfiles(value)
+  --* Absolute paths are easy to parse.
+  if (path.isabsolute(value)) then
+    local matchingFiles = os.matchfiles(value)
+    if matchingFiles ~= null then
+      table.foreachi(matchingFiles, inlineFileWritePTX)
+    end
+    return
+  end
+
+  --* The user probably expects to define relative paths from the project premake5.lua file.
+  local projectDir = project().basedir
+  local relativeToProjectDir = path.join(projectDir, value)
+  local matchingFiles = os.matchfiles(relativeToProjectDir)
   if matchingFiles ~= null then
     table.foreachi(matchingFiles, inlineFileWritePTX)
   end
