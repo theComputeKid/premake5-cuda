@@ -144,7 +144,7 @@ premake.override(premake.vstudio.vc2010.elements, "project", function(base, prj)
   local calls = base(prj)
 
   --* Only enabled if cudaProject defined.
-  if (prj.project.cudaFiles ~= nil) then
+  if (prj.project.cudaFiles ~= nil or prj.project.cudaPTXFiles ~= nil) then
     table.insertafter(calls, premake.vstudio.vc2010.files, cudaProjectProps)
   end
 
@@ -155,7 +155,7 @@ end)
 premake.override(premake.vstudio.vc2010.elements, "itemDefinitionGroup", function(oldfn, cfg)
   local items = oldfn(cfg)
   --* Only enabled if cudaProject defined.
-  if (cfg.project.cudaFiles ~= nil) then
+  if (cfg.project.cudaFiles ~= nil or cfg.project.cudaPTXFiles ~= nil) then
     table.insert(items, addCompilerProps)
     table.insert(items, addLinkerProps)
   end
@@ -165,7 +165,7 @@ end)
 --* Add globals
 premake.override(premake.vstudio.vc2010.elements, "globals", function(base, prj)
   local calls = base(prj)
-  if (prj.project.cudaFiles ~= nil) then
+  if (prj.project.cudaFiles ~= nil or prj.project.cudaPTXFiles ~= nil) then
     table.insertafter(calls, prj.projectGuid, addGlobals)
   end
   return calls
