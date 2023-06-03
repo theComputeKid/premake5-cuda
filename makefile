@@ -19,5 +19,5 @@ $(PREMAKE_OUT):
 	@cd vendor\premake-core && $(MAKE) -nologo -f Bootstrap.mak windows PLATFORM=x64
 
 clean:
-	@del /s /q $(PREMAKE_OUT)
-	@rmdir /s /q test\out
+	@if exist $(PREMAKE_OUT) del /s /q $(PREMAKE_OUT)
+	@if exist test\out rmdir /s /q test\out
