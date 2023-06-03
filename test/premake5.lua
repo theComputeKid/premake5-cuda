@@ -51,8 +51,17 @@ project "ExampleProjectExe"
   buildcustomizations "BuildCustomizations/CUDA 12.1"
 
   externalwarnings "Off" -- thrust gives a lot of warnings
-  cudaFiles { "exe/cu/**.cu" } -- files to be compiled into binaries
-  cudaPTXFiles { "exe/ptx/**.cu" } -- files to be compiled into ptx
+
+  if os.target() == "windows" then
+    cudaFiles { "exe/cu/**.cu" } -- files to be compiled into binaries by VS CUDA.
+    cudaPTXFiles { "exe/ptx/**.cu" } -- files to be compiled into ptx, Windows only.
+  else
+    toolset "nvcc"
+    cudaPath "/usr/local/cuda"
+    files { "exe/cu/**.cu" }
+    rules {"cu"}
+  end
+
   cudaKeep "On" -- keep temporary output files
   cudaFastMath "On"
   cudaRelocatableCode "On"
@@ -74,10 +83,17 @@ project "ExampleProjectDLL"
 
   buildcustomizations "BuildCustomizations/CUDA 12.1"
 
-  -- Just in case we want the VS CUDA extension to use a custom version of CUDA
-  cudaPath "$(CUDA_PATH)"
+  if os.target() == "windows" then
+    -- Just in case we want the VS CUDA extension to use a custom version of CUDA
+    cudaPath "$(CUDA_PATH)"
+    cudaFiles { "lib/**.cu" }
+  else
+    toolset "nvcc"
+    cudaPath "/usr/local/cuda"
+    files { "lib/**.cu" }
+    rules {"cu"}
+  end
 
-  cudaFiles { "lib/**.cu" }
   cudaRelocatableCode "On"
 
   defines { "PREMAKE_CUDA_EXPORT_API" }
