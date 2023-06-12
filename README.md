@@ -16,6 +16,7 @@ Compiles CUDA code using the Visual Studio CUDA Toolkit extension on Windows and
 - `cudaKeep` (Bool) -> keeps preprocessed output.
 - `cudaPath` (String) -> custom CUDA install path.
 - `cudaGenLineInfo` (Bool) -> generates line info.
+- `cudaIntDir` (String) -> Intermediary directory for CUDA files - Windows only.
 
 ----------------
 Notes for Windows:
@@ -41,7 +42,7 @@ Notes for Linux:
 This extension was primarily made for VS on Windows, with the CUDA toolkit extension. Linux is a work in progress and does not have feature parity with Windows yet. Differences are:
 - toolset must be set as `"nvcc"`.
 - rules must be set to `'cu'`.
-- `cudaPTXFiles` not supported.
+- `cudaPTXFiles` and `cudaIntDir` not supported.
 - the list of cuda files must be provided in `files` instead of `cudaFiles`.
 - unlike Windows, the whole project is compiled by `nvcc` and not just the `.cu` files.
 

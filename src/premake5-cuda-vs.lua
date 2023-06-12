@@ -64,6 +64,13 @@ local function addCompilerProps(cfg)
   writeString('CudaToolkitCustomDir', cfg.cudaPath)
   writeBoolean('GenerateLineInfo', cfg.cudaGenLineInfo)
 
+  if cfg.cudaIntDir ~= nil and cfg.cudaIntDir ~= '' then
+    local e = { }
+    e.cfg = cfg
+    local v = premake.detoken.expand(cfg.cudaIntDir, e)
+    writeString('CompileOut', path.translate(v .. "/%%(Filename)%%(Extension).obj", "\\"))
+  end
+
   -- Code Generation is useless, when you can provide it directly in the compile flags
   premake.w('  <CodeGeneration></CodeGeneration>')
   premake.w('</CudaCompile>')

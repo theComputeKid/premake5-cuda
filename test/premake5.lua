@@ -67,6 +67,7 @@ project "ExampleProjectExe"
   cudaRelocatableCode "On"
   cudaVerbosePTXAS "On"
   cudaMaxRegCount "32"
+  cudaIntDir "out/bin/cudaobj/%{cfg.buildcfg}"
 
   vpaths {
     ["Import/*"] = "include/**.hpp",

@@ -71,3 +71,9 @@ premake.api.register {
     scope = "config",
     kind = "boolean"
 }
+
+premake.api.register {
+    name = "cudaIntDir",
+    scope = "project",
+    kind = "string"
+}
