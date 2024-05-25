@@ -18,6 +18,10 @@ Compiles CUDA code using the Visual Studio CUDA Toolkit extension on Windows and
 - `cudaGenLineInfo` (Bool) -> generates line info.
 - `cudaIntDir` (String) -> Intermediary directory for CUDA files - Windows only.
 
+The following functions are provided:
+- `detectNvccVersion()` -> try to detect the default version of nvcc on the system.
+- `detectNvccVersion(cudaPath)` -> try to detect the version of nvcc from a provided path.
+
 ----------------
 Notes for Windows:
 ----------------

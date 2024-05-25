@@ -1,5 +1,7 @@
 require("../premake5-cuda")
 
+local cudaVer = detectNvccVersion()
+
 workspace "ExampleProject"
 
   language "C++"
@@ -48,7 +50,7 @@ project "ExampleProjectExe"
 
   files { "exe/cpp/**.cpp" }
 
-  buildcustomizations "BuildCustomizations/CUDA 12.1"
+  buildcustomizations("BuildCustomizations/CUDA " .. cudaVer)
 
   externalwarnings "Off" -- thrust gives a lot of warnings
 
@@ -82,7 +84,7 @@ project "ExampleProjectDLL"
 
   location "out/%{prj.name}"
 
-  buildcustomizations "BuildCustomizations/CUDA 12.1"
+  buildcustomizations("BuildCustomizations/CUDA " .. cudaVer)
 
   if os.target() == "windows" then
     -- Just in case we want the VS CUDA extension to use a custom version of CUDA
@@ -100,7 +102,7 @@ project "ExampleProjectDLL"
   defines { "PREMAKE_CUDA_EXPORT_API" }
 
   -- Let's compile for all supported architectures (and also in parallel with -t0)
-  cudaCompilerOptions {"-arch=all", "-t0"} 
+  cudaCompilerOptions {"-arch=all", "-t0"}
 
   filter "configurations:debug"
     cudaLinkerOptions { "-g" }

@@ -5,3 +5,5 @@ if os.target() == "windows" then
 elseif os.target() == "linux" then
     dofile("src/premake5-cuda-nvcc.lua")
 end
+
+dofile("src/utils.lua")
