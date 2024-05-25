@@ -4,7 +4,7 @@ function detectNvccVersion(cudaPath)
   local output
 
   if cudaPath ~= nil then
-        output, errorCode = os.outputof("/usr/local/cuda/bin/nvcc --version")
+        output, errorCode = os.outputof(cudaPath .. " --version")
   else
     if os.host() == "linux" then
       output, errorCode = os.outputof("/usr/local/cuda/bin/nvcc --version")
