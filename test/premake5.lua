@@ -70,6 +70,7 @@ project "ExampleProjectExe"
   cudaVerbosePTXAS "On"
   cudaMaxRegCount "32"
   cudaIntDir "out/bin/cudaobj/%{cfg.buildcfg}"
+  cudaKeepDir "%{cfg.objdir}"
 
   vpaths {
     ["Import/*"] = "include/**.hpp",

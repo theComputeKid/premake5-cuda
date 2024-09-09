@@ -83,6 +83,13 @@ function nvcc.getcxxflags(cfg)
     flags = table.join(flags, { "--maxrregcount " .. cfg.cudaMaxRegCount})
   end
 
+  if cfg.cudaKeepDir ~= nil then
+    local e = { }
+    e.cfg = cfg
+    local v = premake.detoken.expand(cfg.cudaKeepDir, e)
+    flags = table.join(flags, { "--keep-dir " .. v})
+  end
+
   return flags
 end
 

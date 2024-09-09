@@ -71,6 +71,13 @@ local function addCompilerProps(cfg)
     writeString('CompileOut', path.translate(v .. "/%%(Filename)%%(Extension).obj", "\\"))
   end
 
+  if cfg.cudaKeepDir ~= nil and cfg.cudaKeepDir ~= '' then
+    local e = { }
+    e.cfg = cfg
+    local v = premake.detoken.expand(cfg.cudaKeepDir, e)
+    writeString('KeepDir', path.translate(v, "\\"))
+  end
+
   -- Code Generation is useless, when you can provide it directly in the compile flags
   premake.w('  <CodeGeneration></CodeGeneration>')
   premake.w('</CudaCompile>')

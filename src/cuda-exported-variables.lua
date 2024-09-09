@@ -77,3 +77,9 @@ premake.api.register {
     scope = "project",
     kind = "string"
 }
+
+premake.api.register {
+    name = "cudaKeepDir",
+    scope = "project",
+    kind = "string"
+}
