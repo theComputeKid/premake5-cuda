@@ -15,7 +15,7 @@ function detectNvccVersion(cudaPath)
     end
   end
 
-  if not errorCode == 0 then
+  if errorCode ~= 0 then
     return 0
   end
 
